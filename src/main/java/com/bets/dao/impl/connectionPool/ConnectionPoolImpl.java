@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Objects;
+import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
@@ -16,9 +17,6 @@ public class ConnectionPoolImpl implements ConnectionPool {
     Logger logger = LogManager.getLogger(ConnectionPoolImpl.class);
 
     private static final int POOL_SIZE = 5;
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/bets";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "1235";
     private static final String CONNECTION_FAILED = "Connection has been failed";
 
     private final BlockingQueue<Connection> availableConnections;
@@ -50,7 +48,12 @@ public class ConnectionPoolImpl implements ConnectionPool {
         }
     }
 
-    private void createConnection() throws DaoException{
+    private void createConnection() throws DaoException {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("database");
+        String DB_URL = resourceBundle.getString("DB_URL");
+        String USER = resourceBundle.getString("USER");
+        String PASSWORD = resourceBundle.getString("PASSWORD");
+
         try {
             for (int i = 0; i < POOL_SIZE; i++) {
                 Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);

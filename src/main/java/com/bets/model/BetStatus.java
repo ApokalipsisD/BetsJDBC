@@ -22,5 +22,4 @@ public enum BetStatus {
                 .findFirst()
                 .orElse(null);
     }
-    // valuesAsList
 }

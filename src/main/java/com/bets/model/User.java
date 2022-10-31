@@ -119,7 +119,8 @@ public class User extends Entity<Integer> {
     @Override
     public String toString() {
         return "User{" +
-                "login='" + login + '\'' +
+                "id=" + id +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -127,7 +128,6 @@ public class User extends Entity<Integer> {
                 ", email='" + email + '\'' +
                 ", balance=" + balance +
                 ", role=" + role +
-                ", id=" + id +
                 '}';
     }
 }

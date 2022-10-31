@@ -131,7 +131,8 @@ public class Match extends Entity<Integer>{
     @Override
     public String toString() {
         return "Match{" +
-                "firstTeam='" + firstTeam + '\'' +
+                "id=" + id +
+                ", firstTeam='" + firstTeam + '\'' +
                 ", secondTeam='" + secondTeam + '\'' +
                 ", firstCoefficient=" + firstCoefficient +
                 ", secondCoefficient=" + secondCoefficient +
@@ -140,7 +141,6 @@ public class Match extends Entity<Integer>{
                 ", date=" + date +
                 ", status=" + status +
                 ", game=" + game +
-                ", id=" + id +
                 '}';
     }
 }

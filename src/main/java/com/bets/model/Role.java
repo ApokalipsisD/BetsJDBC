@@ -22,5 +22,4 @@ public enum Role {
                 .findFirst()
                 .orElse(null);
     }
-    // valuesAsList
 }

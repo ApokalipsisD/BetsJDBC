@@ -22,5 +22,4 @@ public enum GameStatus {
                 .findFirst()
                 .orElse(null);
     }
-    // valuesAsList
 }

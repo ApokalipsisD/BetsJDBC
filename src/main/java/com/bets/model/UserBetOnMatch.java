@@ -5,9 +5,7 @@ import java.util.Objects;
 
 
 public class UserBetOnMatch {
-    //todo check type
     private Integer userId;
-    //todo check type
     private Integer matchId;
     private BigDecimal bet;
     private Integer team;

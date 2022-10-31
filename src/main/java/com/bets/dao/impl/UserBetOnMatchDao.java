@@ -20,8 +20,8 @@ import java.util.Objects;
 public class UserBetOnMatchDao {
     Logger logger = LogManager.getLogger(UserBetOnMatchDao.class);
 
-    private static final String SQL_SAVE_BET = "insert into user_bet_on_match(user_id, match_id, bet, team, coefficient, bet_status_id, earnings) values (?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_BET = "update user_bet_on_match set bet=?, team=?, coefficient=?, bet_status_id=?, earnings=? where user_id=? and match_id=?";
+    private static final String SQL_SAVE_BET = "INSERT INTO user_bet_on_match(user_id, match_id, bet, team, coefficient, bet_status_id, earnings) values (?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_BET = "UPDATE user_bet_on_match SET bet=?, team=?, coefficient=?, bet_status_id=?, earnings=? where user_id=? and match_id=?";
     private static final String SQL_DELETE_BET = "DELETE FROM user_bet_on_match WHERE user_id=? and match_id=?";
     private static final String SQL_FIND_BET_BY_ID = "SELECT user_id, match_id, bet, team, coefficient, bet_status_id, earnings FROM user_bet_on_match WHERE user_id=? and match_id=?";
     private static final String SQL_FIND_ALL_BETS = "SELECT user_id, match_id, bet, team, coefficient, bet_status_id, earnings FROM user_bet_on_match";
