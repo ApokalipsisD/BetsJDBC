@@ -1,22 +1,26 @@
 package com.bets.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
+
 public class UserBetOnMatch {
-    private User userOnMatch;
-    private Match match;
-    private Double bet;
+    //todo check type
+    private Integer userId;
+    //todo check type
+    private Integer matchId;
+    private BigDecimal bet;
     private Integer team;
-    private Double coefficient;
+    private BigDecimal coefficient;
     private BetStatus betStatus;
-    private Double earnings;
+    private BigDecimal earnings;
 
     public UserBetOnMatch() {
     }
 
-    public UserBetOnMatch(User userOnMatch, Match match, Double bet, Integer team, Double coefficient, Integer betStatusId, Double earnings) {
-        this.userOnMatch = userOnMatch;
-        this.match = match;
+    public UserBetOnMatch(Integer userId, Integer matchId, BigDecimal bet, Integer team, BigDecimal coefficient, Integer betStatusId, BigDecimal earnings) {
+        this.userId = userId;
+        this.matchId = matchId;
         this.bet = bet;
         this.team = team;
         this.coefficient = coefficient;
@@ -24,27 +28,27 @@ public class UserBetOnMatch {
         this.earnings = earnings;
     }
 
-    public User getUserOnMatch() {
-        return userOnMatch;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserOnMatch(User userOnMatch) {
-        this.userOnMatch = userOnMatch;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Match getMatch() {
-        return match;
+    public Integer getMatchId() {
+        return matchId;
     }
 
-    public void setMatch(Match match) {
-        this.match = match;
+    public void setMatchId(Integer matchId) {
+        this.matchId = matchId;
     }
 
-    public Double getBet() {
+    public BigDecimal getBet() {
         return bet;
     }
 
-    public void setBet(Double bet) {
+    public void setBet(BigDecimal bet) {
         this.bet = bet;
     }
 
@@ -56,11 +60,11 @@ public class UserBetOnMatch {
         this.team = team;
     }
 
-    public Double getCoefficient() {
+    public BigDecimal getCoefficient() {
         return coefficient;
     }
 
-    public void setCoefficient(Double coefficient) {
+    public void setCoefficient(BigDecimal coefficient) {
         this.coefficient = coefficient;
     }
 
@@ -72,11 +76,11 @@ public class UserBetOnMatch {
         this.betStatus = betStatus;
     }
 
-    public Double getEarnings() {
+    public BigDecimal getEarnings() {
         return earnings;
     }
 
-    public void setEarnings(Double earnings) {
+    public void setEarnings(BigDecimal earnings) {
         this.earnings = earnings;
     }
 
@@ -85,19 +89,19 @@ public class UserBetOnMatch {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserBetOnMatch that = (UserBetOnMatch) o;
-        return userOnMatch.equals(that.userOnMatch) && match.equals(that.match) && bet.equals(that.bet) && team.equals(that.team) && coefficient.equals(that.coefficient) && betStatus == that.betStatus && earnings.equals(that.earnings);
+        return userId.equals(that.userId) && matchId.equals(that.matchId) && bet.equals(that.bet) && team.equals(that.team) && coefficient.equals(that.coefficient) && betStatus == that.betStatus && Objects.equals(earnings, that.earnings);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userOnMatch, match, bet, team, coefficient, betStatus, earnings);
+        return Objects.hash(userId, matchId, bet, team, coefficient, betStatus, earnings);
     }
 
     @Override
     public String toString() {
         return "UserBetOnMatch{" +
-                "userOnMatch=" + userOnMatch +
-                ", match=" + match +
+                "userId=" + userId +
+                ", matchId=" + matchId +
                 ", bet=" + bet +
                 ", team=" + team +
                 ", coefficient=" + coefficient +

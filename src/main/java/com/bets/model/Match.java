@@ -1,13 +1,14 @@
 package com.bets.model;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Match extends Entity<Integer>{
     private String firstTeam;
     private String secondTeam;
-    private Double firstCoefficient;
-    private Double secondCoefficient;
+    private BigDecimal firstCoefficient;
+    private BigDecimal secondCoefficient;
     private Integer firstTeamScore;
     private Integer secondTeamScore;
     private Timestamp date;
@@ -17,7 +18,7 @@ public class Match extends Entity<Integer>{
     public Match() {
     }
 
-    public Match(String firstTeam, String secondTeam, Double firstCoefficient, Double secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
+    public Match(String firstTeam, String secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
         this.firstCoefficient = firstCoefficient;
@@ -29,7 +30,7 @@ public class Match extends Entity<Integer>{
         this.game = Game.getById(gameId);
     }
 
-    public Match(Integer id, String firstTeam, String secondTeam, Double firstCoefficient, Double secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
+    public Match(Integer id, String firstTeam, String secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
         this.id = id;
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
@@ -58,19 +59,19 @@ public class Match extends Entity<Integer>{
         this.secondTeam = secondTeam;
     }
 
-    public Double getFirstCoefficient() {
+    public BigDecimal getFirstCoefficient() {
         return firstCoefficient;
     }
 
-    public void setFirstCoefficient(Double firstCoefficient) {
+    public void setFirstCoefficient(BigDecimal firstCoefficient) {
         this.firstCoefficient = firstCoefficient;
     }
 
-    public Double getSecondCoefficient() {
+    public BigDecimal getSecondCoefficient() {
         return secondCoefficient;
     }
 
-    public void setSecondCoefficient(Double secondCoefficient) {
+    public void setSecondCoefficient(BigDecimal secondCoefficient) {
         this.secondCoefficient = secondCoefficient;
     }
 

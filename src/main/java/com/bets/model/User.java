@@ -1,5 +1,6 @@
 package com.bets.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class User extends Entity<Integer> {
@@ -9,14 +10,13 @@ public class User extends Entity<Integer> {
     private String surname;
     private Integer age;
     private String email;
-    // todo check
-    private Double balance;
+    private BigDecimal balance;
     private Role role;
 
     public User() {
     }
 
-    public User(String login, String password, String name, String surname, Integer age, String email, Double balance, Integer roleId) {
+    public User(String login, String password, String name, String surname, Integer age, String email, BigDecimal balance, Integer roleId) {
         this.login = login;
         this.password = password;
         this.name = name;
@@ -27,7 +27,7 @@ public class User extends Entity<Integer> {
         this.role = Role.getById(roleId);
     }
 
-    public User(Integer id, String login, String password, String name, String surname, Integer age, String email, Double balance, Integer roleId) {
+    public User(Integer id, String login, String password, String name, String surname, Integer age, String email, BigDecimal balance, Integer roleId) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -87,11 +87,11 @@ public class User extends Entity<Integer> {
         this.email = email;
     }
 
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
