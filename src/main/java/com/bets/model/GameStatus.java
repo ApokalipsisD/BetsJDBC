@@ -1,9 +1,10 @@
 package com.bets.model;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum GameStatus {
-    COMING(0), LIVE(1), FINISHED(2);
+    COMING(1), LIVE(2), FINISHED(3);
 
     private final Integer id;
 
@@ -15,9 +16,9 @@ public enum GameStatus {
         return id;
     }
 
-    public static GameStatus getById(int id) {
+    public static GameStatus getById(Integer id) {
         return Arrays.stream(GameStatus.values())
-                .filter(role -> role.getId() == id)
+                .filter(role -> Objects.equals(role.getId(), id))
                 .findFirst()
                 .orElse(null);
     }

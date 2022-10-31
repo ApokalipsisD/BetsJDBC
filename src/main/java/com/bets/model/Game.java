@@ -1,9 +1,10 @@
 package com.bets.model;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum Game {
-    CSGO(0), Valorant(1);
+    CSGO(1), Valorant(2);
 
     private final Integer id;
 
@@ -15,9 +16,9 @@ public enum Game {
         return id;
     }
 
-    public static Game getById(int id) {
+    public static Game getById(Integer id) {
         return Arrays.stream(Game.values())
-                .filter(role -> role.getId() == id)
+                .filter(role -> Objects.equals(role.getId(), id))
                 .findFirst()
                 .orElse(null);
     }

@@ -1,9 +1,10 @@
 package com.bets.model;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum Role {
-    USER(0), ADMIN(1);
+    USER(1), ADMIN(2);
 
     private final Integer id;
 
@@ -15,9 +16,9 @@ public enum Role {
         return id;
     }
 
-    public static Role getById(int id) {
+    public static Role getById(Integer id) {
         return Arrays.stream(Role.values())
-                .filter(role -> role.getId() == id)
+                .filter(role -> Objects.equals(role.getId(), id))
                 .findFirst()
                 .orElse(null);
     }
