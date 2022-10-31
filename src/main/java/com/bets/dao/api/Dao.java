@@ -19,6 +19,8 @@ public interface Dao<T extends Entity<K>, K> {
 
     boolean delete(K id) throws DaoException;
 
+    T findById(K id) throws DaoException;
+
     List<T> findAll() throws DaoException;
 
 

@@ -94,6 +94,7 @@ public class MatchDao implements Dao<Match, Integer> {
         }
     }
 
+    @Override
     public Match findById(Integer id) throws DaoException {
         Connection connection = pool.takeConnection();
         Match match = null;

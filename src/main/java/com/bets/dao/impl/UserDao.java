@@ -91,7 +91,7 @@ public class UserDao implements Dao<User, Integer> {
         }
     }
 
-
+    @Override
     public User findById(Integer id) throws DaoException {
         Connection connection = pool.takeConnection();
         User user = null;
