@@ -52,8 +52,8 @@ public class MatchDao implements Dao<Match, Integer> {
     }
 
     private void doAction(Match match, PreparedStatement preparedStatement) throws SQLException {
-        preparedStatement.setString(1, match.getFirstTeam());
-        preparedStatement.setString(2, match.getSecondTeam());
+        preparedStatement.setInt(1, match.getFirstTeam());
+        preparedStatement.setInt(2, match.getSecondTeam());
         preparedStatement.setBigDecimal(3, match.getFirstCoefficient());
         preparedStatement.setBigDecimal(4, match.getSecondCoefficient());
         preparedStatement.setInt(5, match.getFirstTeamScore());
@@ -105,8 +105,8 @@ public class MatchDao implements Dao<Match, Integer> {
             while (resultSet.next()) {
                 match = new Match(
                         resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
                         resultSet.getBigDecimal(4),
                         resultSet.getBigDecimal(5),
                         resultSet.getInt(6),
@@ -136,8 +136,8 @@ public class MatchDao implements Dao<Match, Integer> {
             while (resultSet.next()) {
                 matchList.add(new Match(
                         resultSet.getInt(1),
-                        resultSet.getString(2),
-                        resultSet.getString(3),
+                        resultSet.getInt(2),
+                        resultSet.getInt(3),
                         resultSet.getBigDecimal(4),
                         resultSet.getBigDecimal(5),
                         resultSet.getInt(6),

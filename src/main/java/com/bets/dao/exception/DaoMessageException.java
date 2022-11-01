@@ -18,4 +18,10 @@ public interface DaoMessageException {
     String DELETE_BET_EXCEPTION = "Delete bet was failed";
     String FIND_BET_BY_ID_EXCEPTION = "Find bet by id was failed";
     String FIND_ALL_BETS_EXCEPTION = "Find all bets was failed";
+
+    String SAVE_TEAM_EXCEPTION = "Save team was failed";
+    String UPDATE_TEAM_EXCEPTION = "Update team was failed";
+    String DELETE_TEAM_EXCEPTION = "Delete team was failed";
+    String FIND_TEAM_BY_ID_EXCEPTION = "Find team by id was failed";
+    String FIND_ALL_TEAMS_EXCEPTION = "Find all teams was failed";
 }

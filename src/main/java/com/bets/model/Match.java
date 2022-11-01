@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class Match extends Entity<Integer>{
-    private String firstTeam;
-    private String secondTeam;
+public class Match extends Entity<Integer> {
+    private Integer firstTeam;
+    private Integer secondTeam;
     private BigDecimal firstCoefficient;
     private BigDecimal secondCoefficient;
     private Integer firstTeamScore;
@@ -18,7 +18,7 @@ public class Match extends Entity<Integer>{
     public Match() {
     }
 
-    public Match(String firstTeam, String secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
+    public Match(Integer firstTeam, Integer secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
         this.firstCoefficient = firstCoefficient;
@@ -30,7 +30,7 @@ public class Match extends Entity<Integer>{
         this.game = Game.getById(gameId);
     }
 
-    public Match(Integer id, String firstTeam, String secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
+    public Match(Integer id, Integer firstTeam, Integer secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
         this.id = id;
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
@@ -43,19 +43,19 @@ public class Match extends Entity<Integer>{
         this.game = Game.getById(gameId);
     }
 
-    public String getFirstTeam() {
+    public Integer getFirstTeam() {
         return firstTeam;
     }
 
-    public void setFirstTeam(String firstTeam) {
+    public void setFirstTeam(Integer firstTeam) {
         this.firstTeam = firstTeam;
     }
 
-    public String getSecondTeam() {
+    public Integer getSecondTeam() {
         return secondTeam;
     }
 
-    public void setSecondTeam(String secondTeam) {
+    public void setSecondTeam(Integer secondTeam) {
         this.secondTeam = secondTeam;
     }
 
