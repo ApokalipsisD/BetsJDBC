@@ -1,6 +1,7 @@
 package com.bets.dao.model;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public enum Role {
@@ -21,5 +22,8 @@ public enum Role {
                 .filter(role -> Objects.equals(role.getId(), id))
                 .findFirst()
                 .orElse(null);
+    }
+    public static List<Role> valuesAsList() {
+        return Arrays.asList(values());
     }
 }
