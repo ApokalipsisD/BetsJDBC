@@ -1,11 +1,11 @@
 package com.bets.dao.impl;
 
 import com.bets.dao.api.ConnectionPool;
-import com.bets.dao.api.Dao;
+import com.bets.dao.api.daoApi.TeamDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.exception.DaoMessageException;
 import com.bets.dao.impl.connectionPool.ConnectionPoolImpl;
-import com.bets.model.Team;
+import com.bets.dao.model.Team;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,9 +17,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeamDao implements Dao<Team, Integer> {
-
-    Logger logger = LogManager.getLogger(TeamDao.class);
+public class TeamDaoImpl implements TeamDao<Team, Integer> {
+    Logger logger = LogManager.getLogger(TeamDaoImpl.class);
     private static final String SQL_SAVE_TEAM = "INSERT INTO team(name) VALUES (?)";
     private static final String SQL_UPDATE_TEAM = "UPDATE team SET name=? WHERE id=?";
     private static final String SQL_DELETE_TEAM = "DELETE FROM team WHERE id=?";

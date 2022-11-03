@@ -1,11 +1,11 @@
 package com.bets.dao.impl;
 
 import com.bets.dao.api.ConnectionPool;
-import com.bets.dao.api.Dao;
+import com.bets.dao.api.daoApi.MatchDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.exception.DaoMessageException;
 import com.bets.dao.impl.connectionPool.ConnectionPoolImpl;
-import com.bets.model.Match;
+import com.bets.dao.model.Match;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,9 +17,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MatchDao implements Dao<Match, Integer> {
-    Logger logger = LogManager.getLogger(MatchDao.class);
-
+public class MatchDaoImpl implements MatchDao<Match, Integer> {
+    Logger logger = LogManager.getLogger(MatchDaoImpl.class);
     private static final String SQL_SAVE_MATCH = "insert into match(team_1, team_2, coefficient_1, coefficient_2, score_1, score_2, date, status_id, game_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_MATCH = "UPDATE match SET team_1=?, team_2=?, coefficient_1=?, coefficient_2=?, score_1=?, score_2=?, date=?, status_id=?, game_id=? WHERE id=?";
     private static final String SQL_DELETE_MATCH = "DELETE FROM match WHERE id=?";
@@ -156,5 +155,4 @@ public class MatchDao implements Dao<Match, Integer> {
         }
         return matchList;
     }
-
 }

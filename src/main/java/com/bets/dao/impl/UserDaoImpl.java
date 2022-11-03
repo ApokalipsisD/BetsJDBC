@@ -1,11 +1,11 @@
 package com.bets.dao.impl;
 
 import com.bets.dao.api.ConnectionPool;
-import com.bets.dao.api.Dao;
+import com.bets.dao.api.daoApi.UserDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.exception.DaoMessageException;
 import com.bets.dao.impl.connectionPool.ConnectionPoolImpl;
-import com.bets.model.User;
+import com.bets.dao.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,15 +17,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements Dao<User, Integer> {
-    Logger logger = LogManager.getLogger(UserDao.class);
+public class UserDaoImpl implements UserDao<User, Integer> {
+    Logger logger = LogManager.getLogger(UserDaoImpl.class);
     private static final String SQL_SAVE_USER = "INSERT INTO user_account(login, password, name, surname, age, email, balance, role_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_USER = "UPDATE user_account SET login=?, password=?, name=?, surname=?, age=?, email=?, balance=?, role_id=? WHERE id=?";
     private static final String SQL_DELETE_USER = "DELETE FROM user_account WHERE id=?";
     private static final String SQL_FIND_USER_BY_ID = "SELECT id, login, password, name, surname, age, email, balance, role_id FROM user_account WHERE id=?";
     private static final String SQL_FIND_ALL_USERS = "SELECT id, login, password, name, surname, age, email, balance, role_id FROM user_account";
-
-
     private final ConnectionPool pool = ConnectionPoolImpl.getInstance();
 
     @Override

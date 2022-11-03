@@ -1,10 +1,11 @@
 package com.bets.dao.impl;
 
 import com.bets.dao.api.ConnectionPool;
+import com.bets.dao.api.daoApi.UserBetOnMatchDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.exception.DaoMessageException;
 import com.bets.dao.impl.connectionPool.ConnectionPoolImpl;
-import com.bets.model.UserBetOnMatch;
+import com.bets.dao.model.UserBetOnMatch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,12 +16,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
-public class UserBetOnMatchDao {
-    Logger logger = LogManager.getLogger(UserBetOnMatchDao.class);
-
+public class UserBetOnMatchDaoImpl implements UserBetOnMatchDao<UserBetOnMatch, Integer> {
+    Logger logger = LogManager.getLogger(UserBetOnMatchDaoImpl.class);
     private static final String SQL_SAVE_BET = "INSERT INTO user_bet_on_match(user_id, match_id, bet, team, coefficient, bet_status_id, earnings) values (?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE_BET = "UPDATE user_bet_on_match SET bet=?, team=?, coefficient=?, bet_status_id=?, earnings=? where user_id=? and match_id=?";
     private static final String SQL_DELETE_BET = "DELETE FROM user_bet_on_match WHERE user_id=? and match_id=?";
@@ -29,6 +28,7 @@ public class UserBetOnMatchDao {
     private static final String SQL_FIND_ALL_BETS = "SELECT id, user_id, match_id, bet, team, coefficient, bet_status_id, earnings FROM user_bet_on_match";
     private final ConnectionPool pool = ConnectionPoolImpl.getInstance();
 
+    @Override
     public UserBetOnMatch save(UserBetOnMatch bet) throws DaoException {
         Connection connection = pool.takeConnection();
         ResultSet resultSet = null;
@@ -50,18 +50,13 @@ public class UserBetOnMatchDao {
             logger.error(DaoMessageException.SAVE_BET_EXCEPTION + e);
             throw new DaoException(DaoMessageException.SAVE_BET_EXCEPTION);
         } finally {
-            if (Objects.nonNull(resultSet)) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
-            }
+            closeResultSet(resultSet);
             pool.returnConnection(connection);
         }
         return bet;
     }
 
+    @Override
     public boolean update(UserBetOnMatch bet) throws DaoException {
         Connection connection = pool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_BET)) {
@@ -82,10 +77,11 @@ public class UserBetOnMatchDao {
         }
     }
 
-    public boolean delete(Integer integerId, Integer matchId) throws DaoException {
+    @Override
+    public boolean delete(Integer userId, Integer matchId) throws DaoException {
         Connection connection = pool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_DELETE_BET)) {
-            preparedStatement.setInt(1, integerId);
+            preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, matchId);
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -96,6 +92,7 @@ public class UserBetOnMatchDao {
         }
     }
 
+    @Override
     public List<UserBetOnMatch> findByUserId(Integer userId) throws DaoException {
         Connection connection = pool.takeConnection();
         List<UserBetOnMatch> betListForUser = new ArrayList<>();
@@ -119,18 +116,13 @@ public class UserBetOnMatchDao {
             logger.error(DaoMessageException.FIND_BET_BY_ID_EXCEPTION + e);
             throw new DaoException(DaoMessageException.FIND_BET_BY_ID_EXCEPTION);
         } finally {
-            if (Objects.nonNull(resultSet)) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
-            }
+            closeResultSet(resultSet);
             pool.returnConnection(connection);
         }
         return betListForUser;
     }
 
+    @Override
     public UserBetOnMatch findById(Integer userId, Integer matchId) throws DaoException {
         Connection connection = pool.takeConnection();
         UserBetOnMatch bet = null;
@@ -155,18 +147,13 @@ public class UserBetOnMatchDao {
             logger.error(DaoMessageException.FIND_BET_BY_ID_EXCEPTION + e);
             throw new DaoException(DaoMessageException.FIND_BET_BY_ID_EXCEPTION);
         } finally {
-            if (Objects.nonNull(resultSet)) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
-            }
+            closeResultSet(resultSet);
             pool.returnConnection(connection);
         }
         return bet;
     }
 
+    @Override
     public List<UserBetOnMatch> findAll() throws DaoException {
         List<UserBetOnMatch> betList = new ArrayList<>();
         Connection connection = pool.takeConnection();
@@ -189,13 +176,7 @@ public class UserBetOnMatchDao {
             logger.error(DaoMessageException.FIND_ALL_BETS_EXCEPTION + e);
             throw new DaoException(DaoMessageException.FIND_ALL_BETS_EXCEPTION);
         } finally {
-            if (Objects.nonNull(resultSet)) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    logger.error(e);
-                }
-            }
+            closeResultSet(resultSet);
             pool.returnConnection(connection);
         }
         return betList;
