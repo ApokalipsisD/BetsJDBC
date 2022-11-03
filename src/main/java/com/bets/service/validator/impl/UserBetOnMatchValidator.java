@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class UserBetOnMatchValidator implements Validator<UserBetOnMatchDto, Integer> {
-
-
     @Override
     public void validate(UserBetOnMatchDto value) throws ServiceException {
         validateBet(value.getBet());

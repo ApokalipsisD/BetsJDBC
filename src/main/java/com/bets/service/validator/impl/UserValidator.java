@@ -66,31 +66,35 @@ public class UserValidator implements Validator<UserDto, Integer> {
     }
 
     private void validateName(String name) throws ServiceException {
-        if (!name.matches(NAME_PATTERN)) {
-            throw new ServiceException(MessageException.INCORRECT_FIRST_NAME_EXCEPTION);
-        }
-        if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new ServiceException(MessageException.INCORRECT_FIRST_NAME_LENGTH_EXCEPTION);
+        if (Objects.nonNull(name)) {
+            if (!name.matches(NAME_PATTERN)) {
+                throw new ServiceException(MessageException.INCORRECT_FIRST_NAME_EXCEPTION);
+            }
+            if (name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
+                throw new ServiceException(MessageException.INCORRECT_FIRST_NAME_LENGTH_EXCEPTION);
+            }
         }
     }
 
     private void validateSurname(String surname) throws ServiceException {
-        if (!surname.matches(NAME_PATTERN)) {
-            throw new ServiceException(MessageException.INCORRECT_LAST_NAME_EXCEPTION);
-        }
-        if (surname.length() < MIN_NAME_LENGTH || surname.length() > MAX_SURNAME_LENGTH) {
-            throw new ServiceException(MessageException.INCORRECT_LAST_NAME_LENGTH_EXCEPTION);
+        if (Objects.nonNull(surname)) {
+            if (!surname.matches(NAME_PATTERN)) {
+                throw new ServiceException(MessageException.INCORRECT_LAST_NAME_EXCEPTION);
+            }
+            if (surname.length() < MIN_NAME_LENGTH || surname.length() > MAX_SURNAME_LENGTH) {
+                throw new ServiceException(MessageException.INCORRECT_LAST_NAME_LENGTH_EXCEPTION);
+            }
         }
     }
 
     private void validateAge(Integer age) throws ServiceException {
-        if (age <= 0 || age > 150) {
+        if (Objects.nonNull(age) && (age <= 0 || age > 150)) {
             throw new ServiceException(MessageException.INCORRECT_AGE_EXCEPTION);
         }
     }
 
     private void validateEmail(String email) throws ServiceException {
-        if (!email.matches(EMAIL_PATTERN)) {
+        if (Objects.nonNull(email) && !email.matches(EMAIL_PATTERN)) {
             throw new ServiceException(MessageException.INCORRECT_EMAIL_EXCEPTION);
         }
     }
