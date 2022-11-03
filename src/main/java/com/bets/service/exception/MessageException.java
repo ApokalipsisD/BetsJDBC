@@ -9,6 +9,7 @@ public interface MessageException {
     String INCORRECT_PASSWORD_EXCEPTION = "Incorrect password (password must contain at least one number, one lowercase and one uppercase letter, minimum password length 8)";
     String ID_IS_NULL_EXCEPTION = "Id is null";
     String USER_NOT_FOUND_EXCEPTION = "User not found";
+    String BET_NOT_FOUND_EXCEPTION = "Bet not found";
     String TEAM_NOT_FOUND_EXCEPTION = "Team not found";
     String MATCH_NOT_FOUND_EXCEPTION = "Match not found";
     String INCORRECT_ID_EXCEPTION = "Incorrect id";
