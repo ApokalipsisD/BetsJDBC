@@ -1,4 +1,4 @@
-package com.bets.model;
+package com.bets.dao.model;
 
 public abstract class Entity<T> {
     protected T id;

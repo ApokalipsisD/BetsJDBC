@@ -1,14 +1,14 @@
-package com.bets.model;
+package com.bets.dao.model;
 
 import java.util.Arrays;
 import java.util.Objects;
 
-public enum Role {
-    USER(1), ADMIN(2);
+public enum GameStatus {
+    COMING(1), LIVE(2), FINISHED(3);
 
     private final Integer id;
 
-    Role(Integer id) {
+    GameStatus(Integer id) {
         this.id = id;
     }
 
@@ -16,8 +16,8 @@ public enum Role {
         return id;
     }
 
-    public static Role getById(Integer id) {
-        return Arrays.stream(Role.values())
+    public static GameStatus getById(Integer id) {
+        return Arrays.stream(GameStatus.values())
                 .filter(role -> Objects.equals(role.getId(), id))
                 .findFirst()
                 .orElse(null);

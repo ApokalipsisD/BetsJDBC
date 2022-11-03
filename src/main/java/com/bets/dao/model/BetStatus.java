@@ -1,4 +1,4 @@
-package com.bets.model;
+package com.bets.dao.model;
 
 import java.util.Arrays;
 import java.util.Objects;
