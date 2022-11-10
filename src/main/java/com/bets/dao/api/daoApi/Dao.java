@@ -13,8 +13,6 @@ import java.util.Objects;
 public interface Dao <T extends Entity<K>, K> {
     Logger logger = LogManager.getLogger(Dao.class);
 
-    T save(T entity) throws DaoException;
-
     boolean update(T entity) throws DaoException;
 
     List<T> findAll() throws DaoException;
