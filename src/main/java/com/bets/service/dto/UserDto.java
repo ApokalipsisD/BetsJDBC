@@ -17,6 +17,12 @@ public class UserDto extends AbstractDto<Integer>{
 
     public UserDto() {
     }
+    public UserDto(String login, String password, BigDecimal balance, Integer roleId) {
+        this.login = login;
+        this.password = password;
+        this.balance = balance;
+        this.role = Role.getById(roleId);
+    }
 
     public UserDto(String login, String password, String name, String surname, Integer age, String email, BigDecimal balance, Integer roleId) {
         this.login = login;

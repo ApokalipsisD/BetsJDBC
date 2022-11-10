@@ -16,6 +16,14 @@ public class UserBetOnMatchDto extends AbstractDto<Integer>{
 
     public UserBetOnMatchDto() {
     }
+    public UserBetOnMatchDto(Integer userId, Integer matchId, BigDecimal bet, Integer team, BigDecimal coefficient, Integer betStatusId) {
+        this.userId = userId;
+        this.matchId = matchId;
+        this.bet = bet;
+        this.team = team;
+        this.coefficient = coefficient;
+        this.betStatus = BetStatus.getById(betStatusId);
+    }
 
     public UserBetOnMatchDto(Integer userId, Integer matchId, BigDecimal bet, Integer team, BigDecimal coefficient, Integer betStatusId, BigDecimal earnings) {
         this.userId = userId;

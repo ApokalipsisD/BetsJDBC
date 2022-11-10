@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 
-public class UserBetOnMatch extends Entity<Integer>{
+public class UserBetOnMatch extends Entity<Integer> {
     private Integer userId;
     private Integer matchId;
     private BigDecimal bet;
@@ -14,6 +14,15 @@ public class UserBetOnMatch extends Entity<Integer>{
     private BigDecimal earnings;
 
     public UserBetOnMatch() {
+    }
+
+    public UserBetOnMatch(Integer userId, Integer matchId, BigDecimal bet, Integer team, BigDecimal coefficient, Integer betStatusId) {
+        this.userId = userId;
+        this.matchId = matchId;
+        this.bet = bet;
+        this.team = team;
+        this.coefficient = coefficient;
+        this.betStatus = BetStatus.getById(betStatusId);
     }
 
     public UserBetOnMatch(Integer userId, Integer matchId, BigDecimal bet, Integer team, BigDecimal coefficient, Integer betStatusId, BigDecimal earnings) {

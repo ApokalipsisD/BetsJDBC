@@ -15,6 +15,12 @@ public class User extends Entity<Integer> {
 
     public User() {
     }
+    public User(String login, String password, BigDecimal balance, Integer roleId) {
+        this.login = login;
+        this.password = password;
+        this.balance = balance;
+        this.role = Role.getById(roleId);
+    }
 
     public User(String login, String password, String name, String surname, Integer age, String email, BigDecimal balance, Integer roleId) {
         this.login = login;
