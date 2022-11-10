@@ -21,6 +21,15 @@ public class MatchDto extends AbstractDto<Integer>{
     public MatchDto() {
     }
 
+    public MatchDto(Integer firstTeam, Integer secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Timestamp date, Integer statusId, Integer gameId) {
+        this.firstTeam = firstTeam;
+        this.secondTeam = secondTeam;
+        this.firstCoefficient = firstCoefficient;
+        this.secondCoefficient = secondCoefficient;
+        this.date = date;
+        this.status = GameStatus.getById(statusId);
+        this.game = Game.getById(gameId);
+    }
     public MatchDto(Integer firstTeam, Integer secondTeam, BigDecimal firstCoefficient, BigDecimal secondCoefficient, Integer firstTeamScore, Integer secondTeamScore, Timestamp date, Integer statusId, Integer gameId) {
         this.firstTeam = firstTeam;
         this.secondTeam = secondTeam;
