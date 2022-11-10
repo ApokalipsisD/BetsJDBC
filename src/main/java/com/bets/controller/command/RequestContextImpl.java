@@ -1,9 +1,9 @@
 package com.bets.controller.command;
 
 import com.bets.controller.command.api.RequestContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class RequestContextImpl implements RequestContext {

@@ -1,6 +1,8 @@
 package com.bets.controller.command.api;
 
-import javax.servlet.http.HttpSession;
+//import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSession;
+
 import java.util.Optional;
 
 public interface RequestContext {
