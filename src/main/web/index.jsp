@@ -4,6 +4,6 @@
     <title>Index</title>
 </head>
 <body>
-<jsp:forward page="/WEB-INF/matches.jsp"/>
+<jsp:forward page="/controller"/>
 </body>
 </html>
