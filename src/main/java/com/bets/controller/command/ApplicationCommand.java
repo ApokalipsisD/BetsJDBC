@@ -1,6 +1,7 @@
 package com.bets.controller.command;
 
 import com.bets.controller.command.api.Command;
+import com.bets.controller.command.impl.AddBalanceCommand;
 import com.bets.controller.command.impl.AddTeamCommand;
 import com.bets.controller.command.impl.ChangePasswordCommand;
 import com.bets.controller.command.impl.CreateMatchCommand;
@@ -48,7 +49,8 @@ public enum ApplicationCommand {
     CREATE_MATCH(CreateMatchCommand.getInstance(), Role.ADMIN),
     ADD_TEAM(AddTeamCommand.getInstance(), Role.ADMIN),
     SHOW_ERROR_PAGE(ShowErrorPageCommand.getInstance()),
-    DELETE_MATCH(DeleteMatchCommand.getInstance(), Role.ADMIN);
+    DELETE_MATCH(DeleteMatchCommand.getInstance(), Role.ADMIN),
+    ADD_BALANCE(AddBalanceCommand.getInstance(), Role.USER, Role.ADMIN);
 
 
 
