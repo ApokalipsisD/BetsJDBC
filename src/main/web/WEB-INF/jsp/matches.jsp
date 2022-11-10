@@ -95,9 +95,6 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                                 data-target="#addTeamModal">Add team
                                         </button>
-                                            <%--                                        <a href="${pageContext.request.contextPath}/controller?command=add_team"--%>
-                                            <%--                                           data-toggle="modal" data-target="#addTeamModal">Add team</a>--%>
-
                                     </div>
 
                                     <div class="form-group">

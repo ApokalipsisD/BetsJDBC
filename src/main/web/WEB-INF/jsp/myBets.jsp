@@ -44,26 +44,30 @@
 <%@include file="header.jsp" %>
 <main class="main">
     <div class="container justify-content-center mt-50 mb-50">
-        <%--        <p style="font-size: 20px; color: red;">red</p>--%>
-
-
-<%--        <div class="row">--%>
-            <div class="">
-                <c:forEach var="i" begin="0" end="${sessionScope.myBets.size()-1}">
-                    <div class="card card-body mt-3">
-                        <div style="display: flex; justify-content: space-between; text-align: center; color: inherit">
-                            <div>Match: ${sessionScope.myBets.get(i).matchId}</div>
-                            <div>Bet: ${sessionScope.myBets.get(i).bet}</div>
-                            <div>Team: ${sessionScope.teams.get(sessionScope.myBets.get(i).team)}</div>
-                            <div>Coefficient: ${sessionScope.myBets.get(i).coefficient}</div>
-                            <div>Bet status: ${sessionScope.myBets.get(i).betStatus}</div>
-                            <div>Earnings: ${sessionScope.myBets.get(i).earnings}</div>
+        <c:choose>
+            <c:when test="${empty sessionScope.myBets}">
+                <p style="font-size: 20px;">You haven't bet on matches yet</p>
+            </c:when>
+            <c:otherwise>
+                <div>
+                    <c:forEach var="i" begin="0" end="${sessionScope.myBets.size()-1}">
+                        <div class="card card-body mt-3">
+                            <div style="display: flex; justify-content: space-between; text-align: center; color: inherit">
+                                <div>Match: ${sessionScope.myBets.get(i).matchId}</div>
+                                <div>Bet: ${sessionScope.myBets.get(i).bet}</div>
+                                <div>Team: ${sessionScope.teams.get(sessionScope.myBets.get(i).team)}</div>
+                                <div>Coefficient: ${sessionScope.myBets.get(i).coefficient}</div>
+                                <div>Bet status: ${sessionScope.myBets.get(i).betStatus}</div>
+                                <div>Earnings: ${sessionScope.myBets.get(i).earnings}</div>
+                            </div>
                         </div>
-                    </div>
-                </c:forEach>
-            </div>
-        </div>
-<%--    </div>--%>
+                    </c:forEach>
+                </div>
+            </c:otherwise>
+        </c:choose>
+
+    </div>
+    <%--    </div>--%>
     <%--    <c:if test="${not empty requestScope.message}">--%>
     <%--        <script>--%>
     <%--            alert("${requestScope.message}")--%>

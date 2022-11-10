@@ -82,11 +82,44 @@
                     </div>
                 </div>
 
-                <h4>Balance: ${sessionScope.user.balance}$</h4>
+                <h4>
+                    <a href="#" style="color: inherit" data-toggle="modal"
+                       data-target="#addBalance">Balance: ${sessionScope.user.balance}$</a>
+                </h4>
 
             </div>
         </div>
 
+        <form action="${pageContext.request.contextPath}/controller?command=add_balance" method="post">
+            <div class="modal fade" tabindex="-1" id="addBalance">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Delete match</h5>
+
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>How much do you want to deposit?</p>
+                            <input type="number" step="0.01" name="deposit" class="form-control"
+                                   id="deposit"
+                                   placeholder="Deposit"
+                                   aria-label="deposit" aria-describedby="basic-addon1" required>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Deposit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
         <form action="${pageContext.request.contextPath}/controller?command=delete_account" method="post">
             <div class="modal fade" tabindex="-1" id="deleteAccount">
                 <div class="modal-dialog">
