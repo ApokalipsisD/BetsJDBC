@@ -2,25 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language : 'en'}"/>--%>
-<%--<fmt:setBundle basename="locale" var="loc"/>--%>
-<%--<fmt:message bundle="${loc}" key="userName" var="userName"/>--%>
-<%--<fmt:message bundle="${loc}" key="firstName" var="firstName"/>--%>
-<%--<fmt:message bundle="${loc}" key="lastName" var="lastName"/>--%>
-<%--<fmt:message bundle="${loc}" key="email" var="email"/>--%>
-<%--<fmt:message bundle="${loc}" key="role" var="role"/>--%>
-<%--<fmt:message bundle="${loc}" key="birthDate" var="birthDate"/>--%>
-<%--<fmt:message bundle="${loc}" key="settings" var="settings"/>--%>
-<%--<fmt:message bundle="${loc}" key="profile" var="profile"/>--%>
-<%--<fmt:message bundle="${loc}" key="saveChanges" var="saveChanges"/>--%>
-<%--<fmt:message bundle="${loc}" key="changePassword" var="changePassword"/>--%>
-<%--<fmt:message bundle="${loc}" key="firstNameReq" var="firstNameReq"/>--%>
-<%--<fmt:message bundle="${loc}" key="lastNameReq" var="lastNameReq"/>--%>
-<%--<fmt:message bundle="${loc}" key="loginReq" var="loginReq"/>--%>
 
 <html>
 <head>
-    <title>${profile}Profile</title>
+    <title>Profile</title>
     <style>
         <%@include file="/WEB-INF/css/bootstrap.min.css" %>
         <%@include file="/WEB-INF/css/editProfile.css" %>
@@ -32,18 +17,17 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-10 col-xl-8 mx-auto">
-                <h2 class="h3 mb-4 page-title">${settings}Settings</h2>
+                <h2 class="h3 mb-4 page-title">Settings</h2>
                 <div class="my-4">
                     <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home"
-                               href="${pageContext.request.contextPath}/controller?command=show_edit_profile"
-                            >${profile}Profile</a>
+                               href="${pageContext.request.contextPath}/controller?command=show_edit_profile">Profile</a>
                         </li>
                         <li>
                             <a class="nav-link active"
                                href="${pageContext.request.contextPath}/controller?command=show_password_page"
-                            >${changePassword}Change password</a>
+                            >Change password</a>
                         </li>
                     </ul>
                     <form action="${pageContext.request.contextPath}/controller?command=edit_profile" method="post">
@@ -76,7 +60,7 @@
                         <hr class="my-4"/>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="firstname">${firstName}Firstname</label>
+                                <label for="firstname">Firstname</label>
                                 <input type="text" id="firstname" name="firstName" class="form-control"
                                 <c:choose>
                                 <c:when test="${not empty sessionScope.user.name}">
@@ -84,10 +68,10 @@
                                 </c:when>
                                 </c:choose>
                                        pattern="^([А-Я][а-яё]{2,20}|[A-Z][a-z]{2,20})$"
-                                       title="${firstNameReq}">
+                                       title="First name must start with an uppercase letter and contain letters of only one language">
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="lastname">${lastName}Lastname</label>
+                                <label for="lastname">Lastname</label>
                                 <input type="text" id="lastname" name="lastName" class="form-control"
                                 <c:choose>
                                 <c:when test="${not empty sessionScope.user.surname}">
@@ -95,18 +79,18 @@
                                 </c:when>
                                 </c:choose>
                                        pattern="^([А-Я][а-яё]{2,20}|[A-Z][a-z]{2,20})$"
-                                       title="${lastNameReq}">
+                                       title="Last name must start with an uppercase letter and contain letters of only one language">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail4">${userName}Login</label>
+                            <label for="inputEmail4">Login</label>
                             <input type="text" name="userName" class="form-control" id="inputUsername"
                                    aria-label="inputEmail4" value="${sessionScope.user.login}"
                                    pattern="^[\w.-]{3,20}[0-9a-zA-Z]$"
-                                   title="${loginReq}">
+                                   title="Login must be greater than 3 and less than 20 and must not contain inaccessible characters">
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail4">${email}Email</label>
+                            <label for="inputEmail4">Email</label>
                             <input type="email" name="email" class="form-control" id="inputEmail4"
                             <c:choose>
                             <c:when test="${not empty sessionScope.user.email}">
@@ -116,7 +100,7 @@
                                    pattern="^([a-zA-Z0-9_-]+\.)*[a-zA-Z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$">
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress5">${birthDate}Age</label>
+                            <label for="inputAddress5">Age</label>
                             <input type="number" name="age" class="form-control" id="inputAddress5"
                             <c:choose>
                             <c:when test="${not empty sessionScope.user.age}">
@@ -127,7 +111,7 @@
                         </div>
                         <hr class="my-4"/>
 
-                        <button type="submit" class="btn btn-primary">${saveChanges}Save changes</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </form>
                 </div>
             </div>

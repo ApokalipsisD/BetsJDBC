@@ -2,13 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language : 'en'}"/>--%>
-<%--<fmt:setBundle basename="locale" var="loc"/>--%>
-<%--<fmt:message bundle="${loc}" key="page" var="page"/>--%>
-<%--<fmt:message bundle="${loc}" key="pageNotFound" var="pageNotFound"/>--%>
-<%--<fmt:message bundle="${loc}" key="pageYouLooking" var="pageYouLooking"/>--%>
-<%--<fmt:message bundle="${loc}" key="backToMain" var="backToMain"/>--%>
-
 <html>
 <head>
     <meta charset="utf-8">

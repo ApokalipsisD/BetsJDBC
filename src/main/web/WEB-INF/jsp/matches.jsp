@@ -1,46 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--<%@ taglib prefix="jwdt" uri="jwdTags" %>--%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%--<fmt:formatDate value="${bean.date}" pattern="yyyy-MM-dd HH:mm:ss" />--%>
-
-<%--<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language : 'en'}"/>--%>
-<%--<fmt:setBundle basename="locale" var="loc"/>--%>
-<%--<fmt:message bundle="${loc}" key="catalog" var="catalog"/>--%>
-<%--<fmt:message bundle="${loc}" key="createCourse" var="createCourse"/>--%>
-<%--<fmt:message bundle="${loc}" key="title" var="title"/>--%>
-<%--<fmt:message bundle="${loc}" key="inputTitle" var="inputTitle"/>--%>
-<%--<fmt:message bundle="${loc}" key="beginning" var="beginning"/>--%>
-<%--<fmt:message bundle="${loc}" key="inputStartDate" var="inputStartDate"/>--%>
-<%--<fmt:message bundle="${loc}" key="ending" var="ending"/>--%>
-<%--<fmt:message bundle="${loc}" key="inputEndDate" var="inputEndDate"/>--%>
-<%--<fmt:message bundle="${loc}" key="teacher" var="teacherN"/>--%>
-<%--<fmt:message bundle="${loc}" key="selectTeacher" var="selectTeacher"/>--%>
-<%--<fmt:message bundle="${loc}" key="description" var="descriptionS"/>--%>
-<%--<fmt:message bundle="${loc}" key="close" var="close"/>--%>
-<%--<fmt:message bundle="${loc}" key="save" var="save"/>--%>
-<%--<fmt:message bundle="${loc}" key="status" var="status"/>--%>
-<%--<%@ page contentType="text/html; charset=UTF-8" language="java" %>--%>
-
-<%--<html>--%>
-<%--<head>--%>
-<%--    <title>Quick Servlet Demo</title>--%>
-<%--</head>--%>
-<%--<body>--%>
-<%--<%@include file="header.jsp" %>--%>
-<%--Hello from main page--%>
-
-
-<%--<a href="${pageContext.request.contextPath}/controller">Click here to send GET request</a>--%>
-
-<%--<br/><br/>--%>
-
-<%--<form action="${pageContext.request.contextPath}/controller" method="post">--%>
-<%--    Width: <input type="text" size="5" name="width"/>--%>
-<%--    Height <input type="text" size="5" name="height"/>--%>
-<%--    <input type="submit" value="Calculate" />--%>
-<%--</form>--%>
-<%--</body>--%>
-<%--</html>--%>
 
 <%@ page import="com.bets.dao.model.Role" %>
 <%@ page import="com.bets.dao.model.Game" %>
@@ -50,12 +9,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <title>${catalog}Matches</title>
+    <title>Matches</title>
     <style>
 
         <%@include file="/WEB-INF/css/bootstrap.min.css" %>
         <%@include file="/WEB-INF/css/catalog.css" %>
-        <%--            <%@include file="/WEB-INF/css/matches.css" %>--%>
 
         label {
             font-size: 120%;
@@ -158,9 +116,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}Close
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                     </button>
-                                    <button type="submit" class="btn btn-primary">${save}Save</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
 
                             </div>
@@ -193,9 +151,9 @@
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}Close
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                                     </button>
-                                    <button type="submit" class="btn btn-primary">${save}Save</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
                                 </div>
 
                             </div>
@@ -208,8 +166,7 @@
         </c:choose>
 
 
-        <%--        <div class="row">--%>
-        <div class="">
+        <div>
             <c:forEach var="i" begin="0" end="${sessionScope.matches.size() - 1}">
                 <div style="display: flex; text-align: center; align-items: center; justify-content: center;">
                     <div class="card card-body mt-3" style="margin-right: 20px">
@@ -242,8 +199,6 @@
                             <c:otherwise>
                                 <div style="display: flex; justify-content: space-between; text-align: center; color: inherit">
                                     <div>
-<%--                                        <input type="hidden" name="id1" value="${sessionScope.matches.get(i).id}">--%>
-
                                         <h4>${sessionScope.teams.get(sessionScope.matches.get(i).firstTeam)}</h4>
                                         <div>${sessionScope.matches.get(i).firstCoefficient}</div>
                                     </div>
@@ -267,17 +222,13 @@
                             </c:otherwise>
                         </c:choose>
                     </div>
-<%--                    <input type="hidden" name="id2" value="${sessionScope.matches.get(i).id}">--%>
 
                     <c:if test="${sessionScope.user.role eq Role.ADMIN}">
                         <div>
-<%--                            <input type="hidden" name="id3" value="${sessionScope.matches.get(i).id}">--%>
-
                             <a style="align-self: flex-start;" href="#" class="btn btn-primary" data-toggle="modal"
                                data-target="#deleteMatch${sessionScope.matches.get(i).id}"
                                role="button">Delete</a>
                         </div>
-<%--                        <input type="hidden" name="id4" value="${sessionScope.matches.get(i).id}">--%>
 
                         <form action="${pageContext.request.contextPath}/controller?command=delete_match"
                               method="post">
@@ -294,15 +245,15 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <p>${deleteAccountConfirm}Are you sure you want to delete this match?</p>
+                                            <p>Are you sure you want to delete this match?</p>
                                         </div>
                                         <div class="modal-footer">
                                             <input type="hidden" name="id" value="${matches.get(i).id}">
 
                                             <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">${close}Close
+                                                    data-dismiss="modal">Close
                                             </button>
-                                            <button type="submit" class="btn btn-primary">${deleteAccount}Delete match
+                                            <button type="submit" class="btn btn-primary">Delete match
                                             </button>
                                         </div>
                                     </div>
@@ -310,14 +261,10 @@
                             </div>
                         </form>
                     </c:if>
-
-
                 </div>
-
             </c:forEach>
         </div>
     </div>
-    <%--    </div>--%>
 
 
     <c:if test="${not empty requestScope.message}">
@@ -326,6 +273,7 @@
             window.location = '${pageContext.request.contextPath}/controller?command=show_matches';
         </script>
     </c:if>
+
     <script>
         const destination = document.getElementById('secondTeam');
         const originalOptions = Array.from(destination.options).slice(0);

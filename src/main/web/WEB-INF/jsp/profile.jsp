@@ -2,25 +2,9 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<%--<fmt:setLocale value="${not empty sessionScope.language ? sessionScope.language : 'en'}"/>--%>
-<%--<fmt:setBundle basename="locale" var="loc"/>--%>
-<%--<fmt:message bundle="${loc}" key="userName" var="userName"/>--%>
-<%--<fmt:message bundle="${loc}" key="firstName" var="firstName"/>--%>
-<%--<fmt:message bundle="${loc}" key="lastName" var="lastName"/>--%>
-<%--<fmt:message bundle="${loc}" key="email" var="email"/>--%>
-<%--<fmt:message bundle="${loc}" key="role" var="role"/>--%>
-<%--<fmt:message bundle="${loc}" key="birthDate" var="birthDate"/>--%>
-<%--<fmt:message bundle="${loc}" key="edit" var="edit"/>--%>
-<%--<fmt:message bundle="${loc}" key="delete" var="delete"/>--%>
-<%--<fmt:message bundle="${loc}" key="profile" var="profile"/>--%>
-<%--<fmt:message bundle="${loc}" key="deleteAccount" var="deleteAccount"/>--%>
-<%--<fmt:message bundle="${loc}" key="deleteAccountConfirm" var="deleteAccountConfirm"/>--%>
-<%--<fmt:message bundle="${loc}" key="close" var="close"/>--%>
-
-
 <html>
 <head>
-    <title>${profile}Profile</title>
+    <title>Profile</title>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <style>
@@ -76,9 +60,9 @@
                         </c:otherwise>
                     </c:choose>
                     <div style="padding-top: 15px; justify-content: space-between">
-                        <a href="controller?command=show_edit_profile" class="btn btn-primary btn-sm">${edit}Edit</a>
+                        <a href="controller?command=show_edit_profile" class="btn btn-primary btn-sm">Edit</a>
                         <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#deleteAccount"
-                           role="button">${delete}Delete</a>
+                           role="button">Delete</a>
                     </div>
                 </div>
 
@@ -125,17 +109,17 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">${deleteAccount}Delete account</h5>
+                            <h5 class="modal-title">Delete account</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p>${deleteAccountConfirm}Are you sure you want to delete this account?</p>
+                            <p>Are you sure you want to delete this account?</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">${close}Close</button>
-                            <button type="submit" class="btn btn-primary">${deleteAccount}Delete account</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Delete account</button>
                         </div>
                     </div>
                 </div>
@@ -147,7 +131,7 @@
                 <table class="table user-view-table m-0">
                     <tbody>
                     <tr>
-                        <td>${userName}Login:</td>
+                        <td>Login:</td>
                         <c:choose>
                             <c:when test="${not empty sessionScope.user.login}">
                                 <td>${sessionScope.user.login}</td>
@@ -158,7 +142,7 @@
                         </c:choose>
                     </tr>
                     <tr>
-                        <td>${firstName}Firstname:</td>
+                        <td>Firstname:</td>
                         <c:choose>
                             <c:when test="${not empty sessionScope.user.name}">
                                 <td>${sessionScope.user.name}</td>
@@ -169,7 +153,7 @@
                         </c:choose>
                     </tr>
                     <tr>
-                        <td>${lastName}Lastname:</td>
+                        <td>Lastname:</td>
                         <c:choose>
                             <c:when test="${not empty sessionScope.user.surname}">
                                 <td>${sessionScope.user.surname}</td>
@@ -180,7 +164,7 @@
                         </c:choose>
                     </tr>
                     <tr>
-                        <td>${email}Email:</td>
+                        <td>Email:</td>
                         <c:choose>
                             <c:when test="${not empty sessionScope.user.email}">
                                 <td>${sessionScope.user.email}</td>
@@ -191,11 +175,11 @@
                         </c:choose>
                     </tr>
                     <tr>
-                        <td>${role}Role:</td>
+                        <td>Role:</td>
                         <td>${sessionScope.user.role}</td>
                     </tr>
                     <tr>
-                        <td>${birthDate}Age:</td>
+                        <td>Age:</td>
                         <c:choose>
                             <c:when test="${not empty sessionScope.user.age}">
                                 <td>${sessionScope.user.age}</td>
@@ -210,12 +194,14 @@
             </div>
         </div>
     </div>
+
     <c:if test="${not empty requestScope.message}">
         <script>
             alert("${requestScope.message}")
             window.location = '${pageContext.request.contextPath}/controller?command=show_profile_page';
         </script>
     </c:if>
+
 </main>
 <%@include file="footer.jsp" %>
 </body>
