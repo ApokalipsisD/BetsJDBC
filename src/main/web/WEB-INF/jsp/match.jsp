@@ -85,7 +85,8 @@
 
             <div style="display: flex; justify-content: space-between;">
                 <h1>${match.firstTeamScore}</h1>
-                <div style="margin-left: 20px; margin-right: 20px; display: grid; align-items: center;">
+                <div style="margin-left: 20px; margin-right: 20px; display: grid; align-items: center;  align-content: center;">
+                    <h4>${match.game}</h4>
                     <div>${match.status}</div>
                     <div>
                         <fmt:formatDate value="${match.date}" pattern="HH:mm:ss dd-MM-yyyy" />

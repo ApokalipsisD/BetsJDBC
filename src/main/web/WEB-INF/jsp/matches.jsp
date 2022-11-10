@@ -224,6 +224,7 @@
                                     <div style="display: flex; justify-content: space-between;">
                                         <h2>${sessionScope.matches.get(i).firstTeamScore}</h2>
                                         <div style="margin-left: 20px; margin-right: 20px; display: grid; align-items: end;">
+                                            <div>${sessionScope.matches.get(i).game}</div>
                                             <div>${sessionScope.matches.get(i).status}</div>
                                             <div>
                                                 <fmt:formatDate value="${sessionScope.matches.get(i).date}"
@@ -249,6 +250,7 @@
                                     <div style="display: flex; justify-content: space-between;">
                                         <h2>${sessionScope.matches.get(i).firstTeamScore}</h2>
                                         <div style="margin-left: 20px; margin-right: 20px; display: grid; align-items: end;">
+                                            <div>${sessionScope.matches.get(i).game}</div>
                                             <div>${sessionScope.matches.get(i).status}</div>
                                             <div>
                                                 <fmt:formatDate value="${sessionScope.matches.get(i).date}"
