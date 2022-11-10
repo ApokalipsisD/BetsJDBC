@@ -15,6 +15,7 @@ import com.bets.service.validator.impl.UserValidator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -72,6 +73,44 @@ public class UserServiceImpl implements UserService<UserDto, Integer> {
             throw new ServiceException(e.getMessage());
         }
         return converter.convert(result);
+    }
+
+
+
+    @Override
+    public boolean checkIfLoginFree(String login) throws ServiceException {
+        try {
+            return userDaoImpl.checkIfLoginFree(login);
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public UserDto getByLogin(String login) throws ServiceException {
+        User result;
+        try {
+            result = userDaoImpl.findByLogin(login);
+            if (Objects.isNull(result)) {
+                throw new DaoException(MessageException.USER_NOT_FOUND_EXCEPTION);
+            }
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
+        return converter.convert(result);
+    }
+
+    @Override
+    public boolean updateUserBalance(Connection connection, UserDto userDto) throws ServiceException {
+        validator.validate(userDto);
+        try {
+            return userDaoImpl.updateUserBalance(connection, converter.convert(userDto));
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override

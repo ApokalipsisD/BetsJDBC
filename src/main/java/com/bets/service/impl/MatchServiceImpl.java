@@ -4,10 +4,13 @@ import com.bets.dao.api.daoApi.MatchDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.impl.MatchDaoImpl;
 import com.bets.dao.model.Match;
+import com.bets.dao.model.UserBetOnMatch;
 import com.bets.service.api.MatchService;
 import com.bets.service.converter.api.Converter;
 import com.bets.service.converter.impl.MatchConverter;
+import com.bets.service.converter.impl.UserBetOnMatchConverter;
 import com.bets.service.dto.MatchDto;
+import com.bets.service.dto.UserBetOnMatchDto;
 import com.bets.service.exception.MessageException;
 import com.bets.service.exception.ServiceException;
 import com.bets.service.validator.api.Validator;
@@ -24,6 +27,7 @@ public class MatchServiceImpl implements MatchService<MatchDto, Integer> {
     private final MatchDao<Match, Integer> matchDaoImpl = new MatchDaoImpl();
     private final Validator<MatchDto, Integer> validator = new MatchValidator();
     private final Converter<Match, MatchDto, Integer> converter = new MatchConverter();
+    private final Converter<UserBetOnMatch, UserBetOnMatchDto, Integer> betConverter = new UserBetOnMatchConverter();
 
     @Override
     public MatchDto save(MatchDto matchDto) throws ServiceException {
@@ -48,10 +52,10 @@ public class MatchServiceImpl implements MatchService<MatchDto, Integer> {
     }
 
     @Override
-    public boolean delete(Integer id) throws ServiceException {
+    public boolean delete(Integer id, UserBetOnMatchDto bet) throws ServiceException {
         validator.validateId(id);
         try {
-            return matchDaoImpl.delete(id);
+            return matchDaoImpl.delete(id, betConverter.convert(bet));
         } catch (DaoException e) {
             logger.error(e.getMessage() + e);
             throw new ServiceException(e.getMessage());
@@ -72,6 +76,17 @@ public class MatchServiceImpl implements MatchService<MatchDto, Integer> {
             throw new ServiceException(e.getMessage());
         }
         return converter.convert(result);
+    }
+
+    @Override
+    public boolean updateMatchStatus(MatchDto matchDto) throws ServiceException {
+        validator.validate(matchDto);
+        try {
+            return matchDaoImpl.updateMatchStatus(converter.convert(matchDto));
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override

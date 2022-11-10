@@ -3,12 +3,14 @@ package com.bets.service.impl;
 import com.bets.dao.api.daoApi.UserBetOnMatchDao;
 import com.bets.dao.exception.DaoException;
 import com.bets.dao.impl.UserBetOnMatchDaoImpl;
+import com.bets.dao.model.User;
 import com.bets.dao.model.UserBetOnMatch;
 import com.bets.service.api.UserBetOnMatchService;
 import com.bets.service.converter.api.Converter;
 import com.bets.service.converter.impl.UserBetOnMatchConverter;
+import com.bets.service.converter.impl.UserConverter;
 import com.bets.service.dto.UserBetOnMatchDto;
-import com.bets.service.exception.MessageException;
+import com.bets.service.dto.UserDto;
 import com.bets.service.exception.ServiceException;
 import com.bets.service.validator.api.Validator;
 import com.bets.service.validator.impl.UserBetOnMatchValidator;
@@ -24,12 +26,13 @@ public class UserBetOnMatchServiceImpl implements UserBetOnMatchService<UserBetO
     private final UserBetOnMatchDao<UserBetOnMatch, Integer> betDao = new UserBetOnMatchDaoImpl();
     private final Validator<UserBetOnMatchDto, Integer> validator = new UserBetOnMatchValidator();
     private final Converter<UserBetOnMatch, UserBetOnMatchDto, Integer> converter = new UserBetOnMatchConverter();
+    private final Converter<User, UserDto, Integer> userConverter = new UserConverter();
 
     @Override
-    public UserBetOnMatchDto save(UserBetOnMatchDto betDto) throws ServiceException {
+    public UserBetOnMatchDto save(UserBetOnMatchDto betDto, UserDto userDto) throws ServiceException {
         validator.validate(betDto);
         try {
-            return converter.convert(betDao.save(converter.convert(betDto)));
+            return converter.convert(betDao.save(converter.convert(betDto), userConverter.convert(userDto)));
         } catch (DaoException e) {
             logger.error(e.getMessage() + e);
             throw new ServiceException(e.getMessage());
@@ -81,14 +84,33 @@ public class UserBetOnMatchServiceImpl implements UserBetOnMatchService<UserBetO
         UserBetOnMatch result;
         try {
             result = betDao.findById(userId, matchId);
-            if (Objects.isNull(result)) {
-                throw new DaoException(MessageException.BET_NOT_FOUND_EXCEPTION);
-            }
         } catch (DaoException e) {
             logger.error(e.getMessage() + e);
             throw new ServiceException(e.getMessage());
         }
-        return converter.convert(result);
+        return Objects.isNull(result) ? null : converter.convert(result);
+    }
+
+    @Override
+    public boolean deleteBetByUserId(Integer userId) throws ServiceException {
+        validator.validateId(userId);
+        try {
+            return betDao.deleteByUserId(userId);
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public boolean updateEarningsAndUserBalance(UserBetOnMatchDto betDto, UserDto userDto) throws ServiceException {
+        validator.validate(betDto);
+        try {
+            return betDao.updateEarningsAndUserBalance(converter.convert(betDto), userConverter.convert(userDto));
+        } catch (DaoException e) {
+            logger.error(e.getMessage() + e);
+            throw new ServiceException(e.getMessage());
+        }
     }
 
     @Override
