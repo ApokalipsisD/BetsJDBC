@@ -56,10 +56,11 @@ public class ConnectionPoolImpl implements ConnectionPool {
 
         try {
             for (int i = 0; i < POOL_SIZE; i++) {
+                Class.forName("org.postgresql.Driver");
                 Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
                 availableConnections.put(connection);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             logger.error(CONNECTION_FAILED);
             throw new DaoException(CONNECTION_FAILED);
         } catch (InterruptedException e) {
