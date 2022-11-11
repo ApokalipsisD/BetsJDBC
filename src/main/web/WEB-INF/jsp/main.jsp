@@ -15,8 +15,8 @@
     .header-h1 h1 {
         display: inline-block;
         position: relative;
-        background: #0097a7;
-        color: #fff;
+        background: #151719;
+        color: #ff6200;
         margin-bottom: 0;
         padding: .5rem 3rem;
         font-size: 1.5rem;
@@ -50,9 +50,8 @@
 
         <div class="container col-md-5">
             <div class="header-h1" style="padding-bottom: 20px; padding-top: 20px">
-                <h1 style="font-size: 45px">Bets</h1>
+                <h1 style="font-size: 45px">FireBets</h1>
             </div>
-<%--            <h3 style="text-align: center;  color: #0097a7; font-family: ‘Lobster’, cursive; font-size: 36px; font-weight: normal; line-height: 48px; margin: 0 0 18px; text-shadow: 1px 0 0 #fff;"><jwdt:welcomeText/></h3>--%>
             <c:choose>
                 <c:when test="${not empty sessionScope.user}">
                     <div class="row justify-content-between" style="margin-top: 50px">
@@ -90,7 +89,7 @@
                         <div class="card card-body col-md-5 col-sm-5 col-lg-5">
                             <div class="card-body align-items-center justify-content-center"
                                  style="height: 150px; justify-content: center; text-align: center">
-                                <p style="text-align: center; font-size: 30px">ign Up</p>
+                                <p style="text-align: center; font-size: 30px">Sign Up</p>
                                 <a class="btn btn-primary btn-lg"
                                    href="${pageContext.request.contextPath}/controller?command=show_sign_up"
                                    role="button" style="align-content: center; align-items: center" type="submit">Sign Up</a>

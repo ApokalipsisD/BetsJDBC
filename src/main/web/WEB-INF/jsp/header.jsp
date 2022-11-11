@@ -22,7 +22,7 @@
 <div class="header-dark ">
     <nav class="navbar navbar-dark navbar-expand-md special-color-dark">
         <div class="container">
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=show_main">Bets</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=show_main">FireBets</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent2"
                     aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
