@@ -55,6 +55,9 @@ public class MatchServiceImpl implements MatchService<MatchDto, Integer> {
     public boolean delete(Integer id, UserBetOnMatchDto bet) throws ServiceException {
         validator.validateId(id);
         try {
+            if(Objects.isNull(bet)){
+                return matchDaoImpl.delete(id, null);
+            }
             return matchDaoImpl.delete(id, betConverter.convert(bet));
         } catch (DaoException e) {
             logger.error(e.getMessage() + e);

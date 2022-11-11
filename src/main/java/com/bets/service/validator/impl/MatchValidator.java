@@ -46,8 +46,8 @@ public class MatchValidator implements Validator<MatchDto, Integer> {
             throw new ServiceException(MessageException.DATE_IS_NULL_EXCEPTION);
         }
 
-        if (date.before(new Timestamp(System.currentTimeMillis()))) {
-            throw new ServiceException(MessageException.INCORRECT_DATE_EXCEPTION);
-        }
+//        if (date.before(new Timestamp(System.currentTimeMillis()))) {
+//            throw new ServiceException(MessageException.INCORRECT_DATE_EXCEPTION);
+//        }
     }
 }

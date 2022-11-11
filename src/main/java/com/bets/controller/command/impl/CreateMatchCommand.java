@@ -29,9 +29,7 @@ public class CreateMatchCommand implements Command {
     private static final Logger logger = LogManager.getLogger(CreateMatchCommand.class);
 
     private static final Command INSTANCE = new CreateMatchCommand();
-//    private static final CourseServiceImpl catalog = new CourseServiceImpl();
     private static final MatchService<MatchDto, Integer> matchService = new MatchServiceImpl();
-
     private static final String PAGE_PATH = "/controller?command=show_matches";
     private static final String FAIL_PAGE_PATH = "/controller?command=show_matches";
     private static final String ERROR_PAGE_PATH = "/WEB-INF/jsp/error.jsp";
@@ -117,8 +115,7 @@ public class CreateMatchCommand implements Command {
             matchService.getAll();
 
             matchDto = new MatchDto(firstTeam, secondTeam, firstCoefficient, secondCoefficient, startScore, startScore, dateTime, status.getId(), game);
-            System.out.println(matchDto);
-            System.out.println(matchService.save(matchDto));
+            matchService.save(matchDto);
 
             context.addAttributeToJsp(MESSAGE, "Match created successfully");
         } catch (ServiceException e) {
